@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+  backend:
+    build: ./backend
+    container_name: backend
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - frontend
+      - backend
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8081:8080"
